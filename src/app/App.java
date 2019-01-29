@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
-import model.Alumnes;
+import model.Alumne;
 import model.Aula;
-import model.Grups;
+import model.Grup;
 import model.Nivell;
 import model.Sexe;
 import model.Telefon;
@@ -28,8 +28,8 @@ public class App {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         int op;
-        Alumnes alum = null;
-        Grups grup = null;
+        Alumne alum = null;
+        Grup grup = null;
         Query query = null;
         //CREAMOS CONEXION
         //SessionFactory sessionFactory;
@@ -50,9 +50,9 @@ public class App {
                     //CREAR OBJETO
                     session.beginTransaction();
 
-                    alum = new Alumnes("Juanito", new Telefon(2221457), Sexe.Hombre, Calendar.getInstance().getTime(), 4, null);
+                    alum = new Alumne ("Juanito", new Telefon(2221457), Sexe.Hombre, Calendar.getInstance().getTime(), 4, null);
 
-                    grup = new Grups("2ESO", Nivell.CF, alum);
+                    grup = new Grup("2ESO", Nivell.CF, alum);
                     Aula aula = new Aula(grup.getCodi(), "segundo eso");
                     grup.setAula(aula);
                     
@@ -78,7 +78,7 @@ public class App {
                 case 3:
                     //MODIFICAR UN OBJETO GRUPO
                     session.beginTransaction();
-                    grup = new Grups("2ESO", Nivell.Baxiller, alum);
+                    grup = new Grup("2ESO", Nivell.Baxiller, alum);
                     session.saveOrUpdate(grup);
                     session.getTransaction().commit();
                     break;
@@ -88,9 +88,9 @@ public class App {
                     //NOM ALUMNES HOMES MAJORS DE 18 ANYS
                     System.out.println("\n NOM ALUMNES HOMES MAJORS DE 18 ANYS");
 
-                    query = session.createQuery("SELECT a FROM Alumnes a WHERE sexe=1 AND datanaix <'2001-01-01' ");
-                    List<Alumnes> listHomes = query.list();
-                    for (Alumnes datos : listHomes) {
+                    query = session.createQuery("SELECT a FROM Alumne a WHERE sexe=1 AND datanaix <'2001-01-01' ");
+                    List<Alumne>Homes = query.list();
+                    for (Alumne datos : Homes) {
                         
                             System.out.println(datos.getNom());
                        
@@ -99,17 +99,17 @@ public class App {
 
                     //NOM ALUMNES QUE HAN SUSPES LA MATEIXA ASIGNATURA I AMB CONGNOMS QUE COMENÇEN AMB 'F'
                     System.out.println("\n NOM ALUMNES QUE HAN SUSPES LA MATEIXA ASIGNATURA I AMB CONGNOMS QUE COMENÇEN AMB 'F'");
-                    query = session.createQuery("SELECT a FROM Alumnes a WHERE susp IN (SELECT susp FROM Alumnes a ) AND a.nom LIKE 'F%'");
+                    query = session.createQuery("SELECT a FROM Alumne a WHERE susp IN (SELECT susp FROM Alumne a ) AND a.nom LIKE 'F%'");
 
-                    List<Alumnes> listSupesNom = query.list();
-                    for (Alumnes a : listSupesNom) {
+                    List<Alumne>SupesNom = query.list();
+                    for (Alumne a: SupesNom) {
                         System.out.println(a.getNom());
                         System.out.println(a.getSusp());
                     }
 
                     //NEXP I NOM D'ALUMNES I CODI DE GRUP EN QUE SON DELEGATS
                     System.out.println("\n NEXP I NOM D'ALUMNES I CODI DE GRUP EN QUE SON DELEGATS");
-                    query = session.createQuery("SELECT a.nexp, a.nom, g.codi FROM Alumnes a, Grups g WHERE a.grup=g.codi");
+                    query = session.createQuery("SELECT a.nexp, a.nom, g.codi FROM Alumne a, Grup g WHERE a.grup=g.codi");
 
                     List<Object[]> listDelegats = query.list();
                     for (Object[] d : listDelegats) {
@@ -118,7 +118,7 @@ public class App {
 
                     //ALUMNES QUE HAN SUSPES MES QUE LA MITJA
                     System.out.println("\n ALUMNES QUE HAN SUSPES MES QUE LA MITJA");
-                    query = session.createQuery("SELECT a.nom FROM Alumnes a WHERE susp > (SELECT AVG(susp) FROM Alumnes)");
+                    query = session.createQuery("SELECT a.nom FROM Alumne a WHERE susp > (SELECT AVG(susp) FROM Alumne)");
 
                     List<Object> listSuperiorMedia = query.list();
                     for (Object a : listSuperiorMedia) {
@@ -127,7 +127,7 @@ public class App {
 
                     //ALUMNES QUE HAN SUSPES MES QUE 2 ASSIGNATURES
                     System.out.println("\n ALUMNES QUE HAN SUSPES MES QUE 2 ASSIGNATURES");
-                    query = session.createQuery("SELECT a.nom FROM Alumnes a WHERE susp > 2");
+                    query = session.createQuery("SELECT a.nom FROM Alumne a WHERE susp > 2");
 
                     List<Object> listSuspesos = query.list();
                     for (Object a : listSuspesos) {
@@ -136,7 +136,7 @@ public class App {
 
                     //GRUPS I NUMERO D'ALUMNES MATRICULATS
                     System.out.println("\n GRUPS I NUMERO D'ALUMNES MATRICULATS");
-                    query = session.createQuery("SELECT g.codi , COUNT(*) FROM Alumnes a, Grups g WHERE g.codi=a.grup GROUP BY codi");
+                    query = session.createQuery("SELECT g.codi , COUNT(*) FROM Alumne a, Grup g WHERE g.codi=a.grup GROUP BY codi");
 
                     List<Object[]> listAlumnesGrup = query.list();
                     for (Object[] dato : listAlumnesGrup) {

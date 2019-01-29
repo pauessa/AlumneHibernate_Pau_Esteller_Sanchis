@@ -12,14 +12,14 @@ import java.util.Set;
  *
  * @author Pauessa
  */
-public class Grups implements Serializable{
+public class Grup implements Serializable{
     private String codi;
     private Nivell nivell;
-    private Alumnes delegat;
-    private Set<Alumnes> alumnes;
+    private Alumne delegat;
+    private Set<Alumne> alumnes;
     private Aula aula;
 
-    public Grups(String codi, Nivell nivell, Alumnes delegat) {
+    public Grup (String codi, Nivell nivell, Alumne delegat) {
         this.codi = codi;
         this.nivell = nivell;
         this.delegat = delegat;
@@ -36,17 +36,17 @@ public class Grups implements Serializable{
 
 
 
-    public Alumnes getDelegat() {
+    public Alumne getDelegat() {
         return delegat;
     }
 
-    public void setDelegat(Alumnes delegat) {
+    public void setDelegat(Alumne delegat) {
         this.delegat = delegat;
     }
 
     
 
-    public Grups() {
+    public Grup() {
     }
 
     public String getCodi() {
@@ -65,13 +65,15 @@ public class Grups implements Serializable{
         this.nivell = nivell;
     }
 
-    public Set<Alumnes> getAlumnes() {
+    public Set<Alumne> getAlumnes() {
         return alumnes;
     }
 
-    public void setAlumnes(Set<Alumnes> alumnes) {
+    public void setAlumnes(Set<Alumne> alumnes) {
         this.alumnes = alumnes;
     }
+
+ 
 
     @Override
     public String toString() {

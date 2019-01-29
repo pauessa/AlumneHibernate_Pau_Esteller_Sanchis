@@ -13,7 +13,7 @@ import java.util.Set;
  *
  * @author Pauessa
  */
-public class Alumnes implements Serializable{
+public class Alumne implements Serializable{
     
     private int nexp;
     private String nom;
@@ -21,10 +21,10 @@ public class Alumnes implements Serializable{
     private Sexe sexe;
     private Date datanaix;
     private int susp;
-    private Grups grup;
-    private Set<Grups> grupos;
+    private Grup grup;
+    private Set<Grup> grupos;
 
-    public Alumnes(String nom, Telefon telefon, Sexe sexe, Date datanaix, int susp, Grups grup) {
+    public Alumne(String nom, Telefon telefon, Sexe sexe, Date datanaix, int susp, Grup grup) {
         this.nom = nom;
         this.telefon = telefon;
         this.sexe = sexe;
@@ -37,7 +37,7 @@ public class Alumnes implements Serializable{
 
 
 
-    public Alumnes() {
+    public Alumne() {
     }
 
     public int getNexp() {
@@ -90,19 +90,19 @@ public class Alumnes implements Serializable{
         this.susp = susp;
     }
 
-    public Grups getGrup() {
+    public Grup getGrup() {
         return grup;
     }
 
-    public void setGrup(Grups grup) {
+    public void setGrup(Grup grup) {
         this.grup = grup;
     }
 
-    public Set<Grups> getGrupos() {
+    public Set<Grup> getGrupos() {
         return grupos;
     }
 
-    public void setGrupos(Set<Grups> grupos) {
+    public void setGrupos(Set<Grup> grupos) {
         this.grupos = grupos;
     }
 
