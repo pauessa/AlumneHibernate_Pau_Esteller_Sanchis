@@ -20,7 +20,7 @@
         <property name="susp" column="susp" type="integer"/>
         
         <many-to-one name="grup">
-            <column name="codi"/>
+            <column name="grup"/>
         </many-to-one>
         
         <set name="grupos" table="grups" inverse="true" fetch="select">

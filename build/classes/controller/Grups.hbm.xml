@@ -2,24 +2,26 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="model.Grups" table="grups">
-  <id column="codi" name="codi" type="string"/>
+    <class name="model.Grups" table="grups">
+        <id column="codi" name="codi" type="string"/>
   
-   <many-to-one name="alumnes" class="model.Alumnes" fetch="select">
+        <many-to-one name="delegat">
             <column name="delegat" unique="true" />
         </many-to-one>
 
-  <property name="nivell">
-      <type name="org.hibernate.type.EnumType">
-          <param name="enumClass">model.Nivell</param>
-          <param name="type">12</param>
-      </type>
-  </property>
-  <set name="alumnes" cascade="all" inverse="true">
-      <key>
-          <column name="delegat"/>
-      </key>
-      <one-to-many class="model.Alumnes"/>
-  </set>
-  </class>
+        <property name="nivell">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">model.Nivell</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <set name="alumnes" cascade="all" inverse="true">
+            <key>
+                <column name="grup"/>
+            </key>
+            <one-to-many class="model.Alumnes"/>
+        </set>
+        
+        <one-to-one name="aula" cascade="all"/>
+    </class>
 </hibernate-mapping>

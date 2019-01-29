@@ -17,12 +17,31 @@ public class Grups implements Serializable{
     private Nivell nivell;
     private Alumnes delegat;
     private Set<Alumnes> alumnes;
+    private Aula aula;
 
-    public Grups(String codi, Nivell nivell, Alumnes delegat, Set<Alumnes> alumnes) {
+    public Grups(String codi, Nivell nivell, Alumnes delegat) {
         this.codi = codi;
         this.nivell = nivell;
         this.delegat = delegat;
-        this.alumnes = alumnes;
+       
+    }
+
+    public Aula getAula() {
+        return aula;
+    }
+
+    public void setAula(Aula aula) {
+        this.aula = aula;
+    }
+
+
+
+    public Alumnes getDelegat() {
+        return delegat;
+    }
+
+    public void setDelegat(Alumnes delegat) {
+        this.delegat = delegat;
     }
 
     

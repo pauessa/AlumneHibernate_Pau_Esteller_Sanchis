@@ -10,6 +10,7 @@ package model;
  * @author Pauessa
  */
 public enum Sexe {
-    Hombre,
-    Mujer
+    Mujer,
+    Hombre
+    
 }
